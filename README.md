@@ -2,10 +2,8 @@
 Javascript string search.
 
 Create a static webpage using HTML, CSS and JS. The page should have two text input boxes:
-
-    Full text
-
-    Keywords list
+Full text
+Keywords list
 
 A user will copy and paste text fragments into each of the boxes.
 
