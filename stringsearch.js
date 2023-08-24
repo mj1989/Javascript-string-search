@@ -55,12 +55,7 @@ function searchText(){
                 }
             });
         }
-    
-   
-    
-
     }
-
 }
 
 let buttonSearch = document.getElementById('buttonSearch');
