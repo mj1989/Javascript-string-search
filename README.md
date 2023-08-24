@@ -1,5 +1,6 @@
 # Javascript-string-search
 https://mj1989.github.io/mj1989.Javascript-string-search/
+
 Javascript string search.
 
 Create a static webpage using HTML, CSS and JS. The page should have two text input boxes:
