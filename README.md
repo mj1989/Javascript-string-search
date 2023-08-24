@@ -10,12 +10,9 @@ A user will copy and paste text fragments into each of the boxes.
 There should also be a button labeled "search".
 
 When a user clicks the "search" button, your javascript code should:
-
-    Extract all keywords from the second input text box. A keyword is a string that starts with mod_ (that is "mod" and then underscore). This is a name of Moodle module - you can see example names in the plugin's repository: https://moodle.org/plugins/?q=type:mod .
-
-    For each of the module names extracted, search for such a string in the first (full text) input box.
-
-    For every keyword extracted, display the results:
+- Extract all keywords from the second input text box. A keyword is a string that starts with mod_ (that is "mod" and then underscore). This is a name of Moodle module - you can see example names in the plugin's repository: https://moodle.org/plugins/?q=type:mod .
+- For each of the module names extracted, search for such a string in the first (full text) input box.
+- For every keyword extracted, display the results:
 
 keyword (module) name, result (FOUND or NOT FOUND).
 
