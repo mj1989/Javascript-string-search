@@ -1,5 +1,5 @@
 /*
-** print message in monitor depending on case
+** Print message in monitor depending on case
 */
 function printMsg(targetID, msgType){
     switch (msgType) {
@@ -15,35 +15,35 @@ function printMsg(targetID, msgType){
     }
 }
 /*
-** reset results in monitor - div with id=monitor
+** Reset results in monitor - div with id=monitor
 */
 function resetMonitor(){
     document.getElementById('monitor').innerText = "Results:";
 }
 /*
-** get full text
+** Get full text from the input where user copy text which will be searched for key words
 */
 function getFullText(){
     return document.getElementById('fullText').value;
 }
 /*
-** get keywords list
+** Get keywords list from input where user copy text with key words
 */
 function getKeywordsList(){
     return document.getElementById('keywordsList').value;
 }
 /*
-** get keywords by regular expriession from keywords list
+** Get keywords by regular expriession from keywords list
 */
 function getKeywords(keywordList, regex){
     return keywordList.match(regex);
 }
 /*
-** parse fulltext with keyword (after regex) array
+** Parse fulltext with keyword (after regex) array
 */
 function parseText(text, keys){
     keys.forEach(key => {
-        //if there is no such key because value is -1 then add not found
+        // If there is no such key because value is -1 then add not found
         if (text.search(`${key} `) == -1) {                    
             document.getElementById('monitor').appendChild(createNotFound(key));                    
         }
@@ -52,9 +52,13 @@ function parseText(text, keys){
         }
     });
 }
+// Function isEmpty checks if a list is empty or not
+function isEmpty(list){
+    if(!list) return true;
+    else return false;
+}
 /*
-** not found function
-** which makes a html with given key as argument
+** Function createNotFound which create and return a html with given key
 */
 function createNotFound(key){
     let notFound = document.createElement('span');
@@ -68,7 +72,7 @@ function createNotFound(key){
     return keyNotFound;
 }
 /*
-** found function - which returns html with given key
+** Function createFound which create and return a html with given key
 */
 function createFound(key){
     let found = document.createElement('span');
@@ -83,35 +87,32 @@ function createFound(key){
     return keyFound;
 }
 /*
-** Button Search
-** event listener
+** Button Search which is triggered by event listener
 */
 function searchText(){
-    //clear monitor
+    // Clear div #id=monitor
     resetMonitor();
-    //regulax expression for a word wich starts with "mod_"
+    // Regulax expression for a word wich starts with "mod_"
     const regexMob = /\bmod_\w+\b/g;
-    // if keywordList is empty it should stop and ask for some input to firs find keywords wich starts with "mod_"
+    // Get a keyword list
     let keywordList = getKeywordsList(); 
-    if(!keywordList){
+    // If a keywordList is empty it should stop and ask for some input to find keywords wich starts with "mod_"
+    if(isEmpty(keywordList)){
         printMsg('monitor', 'Warning');
-    }
-    else{
-        //array of string which consts of keys that match regexMob
-        let keysAfterRegex = getKeywords(keywordList, regexMob);
-        //if there is no keys that match is should print a warning
-        if(!keysAfterRegex){
-            printMsg('monitor', 'Danger');
-        }
-        else{
-            //for every key in array keysAfterRegex check if a key exists in fullText
-            parseText(getFullText(), keysAfterRegex);
-        }
-    }
+        return 
+    }   
+    // Get an array of string which consists of keys that match regexMob
+    let keysAfterRegex = getKeywords(keywordList, regexMob);
+    // If there are no keys that fit then it should print a warning
+    if(isEmpty(keysAfterRegex)){
+        printMsg('monitor', 'Danger');
+        return
+    }   
+    // For every key in an array the parseText function checks if a keys exists in fullText
+    parseText(getFullText(), keysAfterRegex);
 }
 
 let buttonSearch = document.getElementById('buttonSearch');
+// Add event listener to button search 
 buttonSearch.addEventListener('click', searchText);
 resetMonitor();
-
-
